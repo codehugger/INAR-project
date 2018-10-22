@@ -1,0 +1,90 @@
+{
+    "roles": {
+        "hero": {},
+        "swordmaster": {}
+    },
+    "objects": {
+        "sword": {}
+    },
+    "characters": {
+        "arthur": {
+            "role": "hero"
+        },
+        "lady": {
+            "role": "swordmaster"
+        },
+        "stone": {
+            "role": "swordmaster"
+        }
+    },
+    "actions": {
+        "claim": {
+            "attributes": [
+                "hero",
+            ],
+            "preconditions": [
+                "has ?hero sword",
+                "at ?hero castle"
+            ],
+            "effect": [
+                "claimed ?hero, castle"
+            ]
+        },
+        "give": {
+            "attributes": [
+                "hero",
+                "location"
+            ],
+            "preconditions": [
+                "has ?sword ?swordmaster",
+                "has not ?hero ?swordmaster",
+                "at ?hero ?location",
+                "at ?swordmaster ?location"
+            ],
+            "effects": [
+                "has ?sword ?hero"
+            ]
+        },
+        "move": {
+            "attributes": [
+                "?hero",
+                "?from",
+                "?to"
+            ],
+            "preconditions": [
+                "not at ?hero ?to",
+                "at ?hero ?from"
+            ],
+            "effects": [
+                "not at ?hero ?from",
+                "at ?hero ?to"
+            ]
+        },
+        "kill": {
+            "attributes": [
+                "?hero",
+                "?swordmaster",
+                "?location"
+            ],
+            "preconditions": [
+                "at ?hero ?location",
+                "at ?swordmaster ?location"
+            ],
+            "effects": [
+                "not alive ?swordmaster"
+            ]
+        }
+    },
+    "locations": {
+        "lake": {},
+        "castle": {},
+        "mountain": {},
+        "forest": {}
+    },
+    "preconditions": [
+        "hero at forest",
+        "swordmaster at lake",
+        "not has hero sword",
+        "has swordmaster sword"
+    ]
+}
